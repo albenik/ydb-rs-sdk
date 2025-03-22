@@ -1,10 +1,10 @@
 extern crate ydb_slo_tests;
 
-use crate::db::Database;
-use clap::Parser;
-use ratelimit::Ratelimiter;
 use std::sync::Arc;
 use std::time::Duration;
+
+use clap::Parser;
+use ratelimit::Ratelimiter;
 use tokio::sync::Mutex;
 use tokio::time;
 use tokio::time::timeout;
@@ -14,6 +14,8 @@ use ydb_slo_tests::cli::{Command, SloTestsCli};
 use ydb_slo_tests::generator::Generator;
 use ydb_slo_tests::row::RowID;
 use ydb_slo_tests::workers::{ReadWriter, Workers};
+
+use crate::db::Database;
 
 mod db;
 

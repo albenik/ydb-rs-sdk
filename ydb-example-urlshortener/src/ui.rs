@@ -1,10 +1,12 @@
-use crate::db;
-use serde::Deserialize;
 use std::convert::Infallible;
 use std::str::FromStr;
+
+use serde::Deserialize;
 use warp::http::{StatusCode, Uri};
 use warp::{Filter, Reply};
 use ydb::{TableClient, YdbError};
+
+use crate::db;
 
 async fn index() -> Result<impl Reply, Infallible> {
     Ok(warp::reply::html(include_str!("index.html")))

@@ -1,7 +1,9 @@
-use crate::{YdbError, YdbResult};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
+
 use tokio::sync::watch;
+
+use crate::{YdbError, YdbResult};
 
 #[async_trait::async_trait]
 pub trait Waiter: Send + Sync {

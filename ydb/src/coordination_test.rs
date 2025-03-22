@@ -3,13 +3,13 @@ use std::time::Duration;
 use tokio::task::JoinHandle;
 use tracing_test::traced_test;
 
-use crate::{
-    client_coordination::list_types::{
-        ConsistencyMode, NodeConfigBuilder, RateLimiterCountersMode,
-    },
-    test_integration_helper::create_client,
-    AcquireOptionsBuilder, CoordinationSession, SessionOptionsBuilder, YdbResult,
+use crate::client_coordination::list_types::{
+    ConsistencyMode,
+    NodeConfigBuilder,
+    RateLimiterCountersMode,
 };
+use crate::test_integration_helper::create_client;
+use crate::{AcquireOptionsBuilder, CoordinationSession, SessionOptionsBuilder, YdbResult};
 
 #[tokio::test]
 #[traced_test]

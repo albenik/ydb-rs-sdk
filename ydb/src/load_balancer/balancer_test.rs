@@ -1,19 +1,3 @@
-use super::*;
-use super::{
-    nearest_dc_balancer::{BalancerConfig, FallbackStrategy, NearestDCBalancer},
-    random_balancer::RandomLoadBalancer,
-    LoadBalancer, MockLoadBalancer, SharedLoadBalancer,
-};
-use crate::discovery::NodeInfo;
-use crate::grpc_wrapper::raw_services::Service::Table;
-use crate::waiter::WaiterImpl;
-use crate::YdbResult;
-use http::Uri;
-use itertools::Itertools;
-use mockall::predicate;
-use nearest_dc_balancer::{BalancerState, NODES_PER_DC, PING_TIMEOUT_SECS};
-use ntest::assert_true;
-use num::One;
 use std::borrow::Borrow;
 use std::collections::HashMap;
 use std::str::FromStr;
@@ -21,11 +5,26 @@ use std::sync::atomic::AtomicUsize;
 use std::sync::atomic::Ordering::Relaxed;
 use std::sync::{Arc, RwLock};
 use std::time::Duration;
+
+use http::Uri;
+use itertools::Itertools;
+use mockall::predicate;
+use nearest_dc_balancer::{BalancerState, NODES_PER_DC, PING_TIMEOUT_SECS};
+use ntest::assert_true;
+use num::One;
 use tokio::net::TcpListener;
 use tokio::sync::watch;
 use tokio::time::timeout;
 use tokio_util::sync::CancellationToken;
 use tracing::trace;
+
+use super::nearest_dc_balancer::{BalancerConfig, FallbackStrategy, NearestDCBalancer};
+use super::random_balancer::RandomLoadBalancer;
+use super::{LoadBalancer, MockLoadBalancer, SharedLoadBalancer, *};
+use crate::discovery::NodeInfo;
+use crate::grpc_wrapper::raw_services::Service::Table;
+use crate::waiter::WaiterImpl;
+use crate::YdbResult;
 
 #[test]
 fn shared_load_balancer() -> YdbResult<()> {

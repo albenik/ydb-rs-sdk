@@ -1,5 +1,6 @@
-use crate::errors;
 use derive_builder::Builder;
+
+use crate::errors;
 
 #[derive(Debug, Clone)]
 #[allow(dead_code)]

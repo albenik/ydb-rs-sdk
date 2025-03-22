@@ -1,12 +1,14 @@
+use std::sync::{Arc, Mutex, RwLock};
+use std::time::Instant;
+
+use secrecy::SecretString;
+use tokio::sync::watch;
+use tracing::trace;
+
 use crate::credentials::CredentialsRef;
 use crate::errors::YdbResult;
 use crate::pub_traits::TokenInfo;
 use crate::waiter::Waiter;
-use secrecy::SecretString;
-use std::sync::{Arc, Mutex, RwLock};
-use std::time::Instant;
-use tokio::sync::watch;
-use tracing::trace;
 
 #[derive(Clone, Debug)]
 pub(crate) struct DBCredentials {

@@ -1,6 +1,8 @@
-use super::*;
 use std::collections::HashSet;
+
 use strum::EnumCount;
+
+use super::*;
 
 #[test]
 fn consistent_conversion() -> RawResult<()> {

@@ -1,26 +1,22 @@
 use std::collections::HashSet;
 use std::str::FromStr;
 use std::sync::{Arc, RwLock, RwLockWriteGuard, Weak};
+use std::time::Duration;
 
 use async_trait::async_trait;
+use derivative::Derivative;
 use http::uri::Authority;
 use http::Uri;
-
-use crate::errors::YdbResult;
-
-use crate::waiter::Waiter;
-
-use derivative::Derivative;
 use itertools::Itertools;
-use std::time::Duration;
 use tokio::sync::watch::Receiver;
 use tokio::sync::{watch, Mutex};
+use tracing::trace;
 
+use crate::errors::YdbResult;
 use crate::grpc_connection_manager::GrpcConnectionManager;
-
 use crate::grpc_wrapper::raw_discovery_client::{EndpointInfo, GrpcDiscoveryClient};
 use crate::grpc_wrapper::raw_services::Service;
-use tracing::trace;
+use crate::waiter::Waiter;
 
 /// Current discovery state
 #[derive(Clone, Debug, PartialEq)]
@@ -388,6 +384,12 @@ impl Waiter for DiscoverySharedState {
 
 #[cfg(test)]
 mod test {
+    use std::str::FromStr;
+    use std::sync::Arc;
+    use std::time::Duration;
+
+    use http::Uri;
+
     use crate::client_common::{DBCredentials, TokenCache};
     use crate::discovery::DiscoverySharedState;
     use crate::errors::YdbResult;
@@ -396,10 +398,6 @@ mod test {
     use crate::grpc_wrapper::runtime_interceptors::MultiInterceptor;
     use crate::load_balancer::{SharedLoadBalancer, StaticLoadBalancer};
     use crate::test_helpers::test_client_builder;
-    use http::Uri;
-    use std::str::FromStr;
-    use std::sync::Arc;
-    use std::time::Duration;
 
     #[tokio::test]
     #[ignore] // need YDB access

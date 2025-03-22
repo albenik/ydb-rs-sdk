@@ -1,7 +1,9 @@
+use std::collections::HashSet;
+
+use strum::EnumCount;
+
 use super::*;
 use crate::grpc_wrapper::raw_errors::RawResult;
-use std::collections::HashSet;
-use strum::EnumCount;
 
 #[test]
 fn convert_raw_protobuf() -> RawResult<()> {

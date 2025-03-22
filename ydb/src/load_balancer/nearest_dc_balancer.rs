@@ -1,34 +1,26 @@
-use std::{
-    borrow::{Borrow, BorrowMut},
-    collections::HashMap,
-    sync::Arc,
-};
+use std::borrow::{Borrow, BorrowMut};
+use std::collections::HashMap;
+use std::sync::{Arc, RwLock};
+use std::time::Duration;
 
 use http::Uri;
 use itertools::Itertools;
-use rand::{seq::SliceRandom, thread_rng};
-use std::sync::RwLock;
-use std::time::Duration;
-use tokio::{
-    io::AsyncWriteExt,
-    net::TcpStream,
-    sync::{
-        broadcast, mpsc,
-        watch::{self, Sender},
-    },
-    task::JoinSet,
-};
+use rand::seq::SliceRandom;
+use rand::thread_rng;
+use tokio::io::AsyncWriteExt;
+use tokio::net::TcpStream;
+use tokio::sync::watch::{self, Sender};
+use tokio::sync::{broadcast, mpsc};
+use tokio::task::JoinSet;
 use tokio_util::sync::CancellationToken;
 use tracing::{error, info, warn};
 
-use crate::{
-    discovery::NodeInfo,
-    grpc_wrapper::raw_services::Service,
-    waiter::{AllWaiter, WaiterImpl},
-    DiscoveryState, Waiter, YdbError, YdbResult,
-};
-
-use super::{random_balancer::RandomLoadBalancer, LoadBalancer};
+use super::random_balancer::RandomLoadBalancer;
+use super::LoadBalancer;
+use crate::discovery::NodeInfo;
+use crate::grpc_wrapper::raw_services::Service;
+use crate::waiter::{AllWaiter, WaiterImpl};
+use crate::{DiscoveryState, Waiter, YdbError, YdbResult};
 pub(crate) struct BalancerConfig {
     pub(super) fallback_strategy: FallbackStrategy,
 }

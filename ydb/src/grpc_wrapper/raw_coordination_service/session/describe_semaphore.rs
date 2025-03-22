@@ -1,13 +1,11 @@
-use ydb_grpc::ydb_proto::{
-    coordination::{session_request, session_response::DescribeSemaphoreResult},
-    status_ids::StatusCode,
-};
+use ydb_grpc::ydb_proto::coordination::session_request;
+use ydb_grpc::ydb_proto::coordination::session_response::DescribeSemaphoreResult;
+use ydb_grpc::ydb_proto::status_ids::StatusCode;
 
-use crate::{
-    client_coordination::session::controller::IdentifiedMessage,
-    grpc_wrapper::{grpc::proto_issues_to_ydb_issues, raw_errors::RawError},
-    WatchMode, YdbStatusError,
-};
+use crate::client_coordination::session::controller::IdentifiedMessage;
+use crate::grpc_wrapper::grpc::proto_issues_to_ydb_issues;
+use crate::grpc_wrapper::raw_errors::RawError;
+use crate::{WatchMode, YdbStatusError};
 
 #[derive(Debug)]
 pub(crate) struct RawDescribeSemaphoreRequest {

@@ -1,18 +1,17 @@
-use futures_util::StreamExt;
 use std::time::Duration;
-use tracing_test::traced_test;
 
-use crate::client_topic::list_types::ConsumerBuilder;
-use crate::grpc_wrapper::runtime_interceptors::InterceptedChannel;
-use crate::test_integration_helper::create_client;
-use crate::{
-    client_topic::client::TopicOptionsBuilder, TopicWriterMessageBuilder,
-    TopicWriterOptionsBuilder, YdbError, YdbResult,
-};
+use futures_util::StreamExt;
 use tracing::{info, trace, warn};
+use tracing_test::traced_test;
 use ydb_grpc::ydb_proto::topic::stream_read_message;
 use ydb_grpc::ydb_proto::topic::stream_read_message::init_request::TopicReadSettings;
 use ydb_grpc::ydb_proto::topic::v1::topic_service_client::TopicServiceClient;
+
+use crate::client_topic::client::TopicOptionsBuilder;
+use crate::client_topic::list_types::ConsumerBuilder;
+use crate::grpc_wrapper::runtime_interceptors::InterceptedChannel;
+use crate::test_integration_helper::create_client;
+use crate::{TopicWriterMessageBuilder, TopicWriterOptionsBuilder, YdbError, YdbResult};
 
 #[tokio::test]
 #[traced_test]

@@ -1,6 +1,7 @@
-use crate::grpc_wrapper::raw_ydb_operation::RawOperationParams;
 use ydb_grpc::ydb_proto::operations::OperationParams;
 use ydb_grpc::ydb_proto::topic::DropTopicRequest;
+
+use crate::grpc_wrapper::raw_ydb_operation::RawOperationParams;
 
 #[derive(serde::Serialize)]
 pub(crate) struct RawDropTopicRequest {

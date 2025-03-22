@@ -1,5 +1,14 @@
-use itertools::Itertools;
 use std::collections::HashMap;
+
+use itertools::Itertools;
+use ydb_grpc::ydb_proto::operations::OperationParams;
+use ydb_grpc::ydb_proto::topic::{
+    Consumer,
+    CreateTopicRequest,
+    MeteringMode,
+    PartitioningSettings,
+    SupportedCodecs,
+};
 
 use crate::client_topic::client::TopicOptions;
 use crate::grpc_wrapper::raw_common_types::Duration;
@@ -8,10 +17,6 @@ use crate::grpc_wrapper::raw_topic_service::common::consumer::RawConsumer;
 use crate::grpc_wrapper::raw_topic_service::common::metering_mode::RawMeteringMode;
 use crate::grpc_wrapper::raw_topic_service::common::partitioning_settings::RawPartitioningSettings;
 use crate::grpc_wrapper::raw_ydb_operation::RawOperationParams;
-use ydb_grpc::ydb_proto::operations::OperationParams;
-use ydb_grpc::ydb_proto::topic::{
-    Consumer, CreateTopicRequest, MeteringMode, PartitioningSettings, SupportedCodecs,
-};
 
 #[derive(serde::Serialize)]
 pub(crate) struct RawCreateTopicRequest {

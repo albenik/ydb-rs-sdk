@@ -2,10 +2,11 @@ use secrecy::ExposeSecret;
 use tracing::trace;
 use tracing_test::traced_test;
 
-use crate::{
-    credentials::StaticCredentials, pub_traits::Credentials, test_helpers::CONNECTION_STRING,
-    test_integration_helper::create_password_client, Query, Transaction, YdbResult,
-};
+use crate::credentials::StaticCredentials;
+use crate::pub_traits::Credentials;
+use crate::test_helpers::CONNECTION_STRING;
+use crate::test_integration_helper::create_password_client;
+use crate::{Query, Transaction, YdbResult};
 
 #[test]
 #[traced_test]

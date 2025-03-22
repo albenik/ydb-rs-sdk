@@ -2,7 +2,8 @@ use crate::client::TimeoutSettings;
 use crate::client_scheme::list_types::SchemeEntry;
 use crate::grpc_connection_manager::GrpcConnectionManager;
 use crate::grpc_wrapper::raw_scheme_client::client::{
-    RawMakeDirectoryRequest, RawRemoveDirectoryRequest,
+    RawMakeDirectoryRequest,
+    RawRemoveDirectoryRequest,
 };
 use crate::grpc_wrapper::raw_scheme_client::list_directory_types::RawListDirectoryRequest;
 use crate::{grpc_wrapper, YdbResult};

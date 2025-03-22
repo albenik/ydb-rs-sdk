@@ -1,6 +1,8 @@
-use crate::errors;
-use derive_builder::Builder;
 use std::time::Duration;
+
+use derive_builder::Builder;
+
+use crate::errors;
 
 #[allow(dead_code)]
 #[derive(Builder, Clone)]

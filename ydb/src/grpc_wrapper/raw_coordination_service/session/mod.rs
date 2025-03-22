@@ -1,5 +1,9 @@
 use ydb_grpc::ydb_proto::coordination::session_response::{
-    AcquireSemaphorePending, DescribeSemaphoreChanged, PingPong, SessionStarted, SessionStopped,
+    AcquireSemaphorePending,
+    DescribeSemaphoreChanged,
+    PingPong,
+    SessionStarted,
+    SessionStopped,
 };
 use ydb_grpc::ydb_proto::coordination::{session_response, SessionResponse};
 
@@ -10,18 +14,15 @@ pub(crate) mod describe_semaphore;
 pub(crate) mod release_semaphore;
 pub(crate) mod update_semaphore;
 
-use crate::grpc_wrapper::{
-    grpc::proto_issues_to_ydb_issues,
-    raw_errors::{RawError, RawResult},
-};
-use crate::YdbStatusError;
-
 use self::acquire_semaphore::RawAcquireSemaphoreResult;
 use self::create_semaphore::RawCreateSemaphoreResult;
 use self::delete_semaphore::RawDeleteSemaphoreResult;
 use self::describe_semaphore::RawDescribeSemaphoreResult;
 use self::release_semaphore::RawReleaseSemaphoreResult;
 use self::update_semaphore::RawUpdateSemaphoreResult;
+use crate::grpc_wrapper::grpc::proto_issues_to_ydb_issues;
+use crate::grpc_wrapper::raw_errors::{RawError, RawResult};
+use crate::YdbStatusError;
 
 #[derive(Debug)]
 pub(crate) enum RawSessionResponse {

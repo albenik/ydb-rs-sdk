@@ -1,9 +1,7 @@
 use ydb_grpc::ydb_proto::coordination::{Config, ConsistencyMode, RateLimiterCountersMode};
 
-use crate::{
-    client_coordination::list_types::NodeConfig,
-    grpc_wrapper::raw_errors::{RawError, RawResult},
-};
+use crate::client_coordination::list_types::NodeConfig;
+use crate::grpc_wrapper::raw_errors::{RawError, RawResult};
 
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub(crate) enum RawConsistencyMode {

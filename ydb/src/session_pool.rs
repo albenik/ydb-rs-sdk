@@ -1,14 +1,16 @@
+use std::collections::vec_deque::VecDeque;
+use std::ops::{Add, Sub};
+use std::sync::{Arc, Mutex, Weak};
+
+use async_trait::async_trait;
+use tokio::sync::Semaphore;
+use tracing::trace;
+
 use crate::client::TimeoutSettings;
 use crate::errors::*;
 use crate::grpc_connection_manager::GrpcConnectionManager;
 use crate::grpc_wrapper::raw_table_service::client::RawTableClient;
 use crate::session::Session;
-use async_trait::async_trait;
-use std::collections::vec_deque::VecDeque;
-use std::ops::{Add, Sub};
-use std::sync::{Arc, Mutex, Weak};
-use tokio::sync::Semaphore;
-use tracing::trace;
 
 const DEFAULT_SIZE: usize = 1000;
 
@@ -150,19 +152,19 @@ async fn sessions_pinger(
 
 #[cfg(test)]
 mod test {
+    use std::time::Duration;
+
+    use async_trait::async_trait;
+    use tokio::sync::oneshot;
+    use ydb_grpc::ydb_proto::table::v1::table_service_client::TableServiceClient;
+
     use super::SessionFabric;
     use crate::client::TimeoutSettings;
-
     use crate::errors::{YdbError, YdbResult};
     use crate::grpc_wrapper::raw_table_service::client::RawTableClient;
     use crate::grpc_wrapper::runtime_interceptors::InterceptedChannel;
     use crate::session::{CreateTableClient, Session};
     use crate::session_pool::SessionPool;
-    use async_trait::async_trait;
-
-    use std::time::Duration;
-    use tokio::sync::oneshot;
-    use ydb_grpc::ydb_proto::table::v1::table_service_client::TableServiceClient;
 
     struct SessionClientMock {}
 

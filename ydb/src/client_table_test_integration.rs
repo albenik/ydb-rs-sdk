@@ -3,9 +3,9 @@ use std::iter::FromIterator;
 use std::sync::Arc;
 use std::time;
 use std::time::UNIX_EPOCH;
-use tokio::sync::Mutex as AsyncMutex;
 
 use rand::distributions::{Alphanumeric, DistString};
+use tokio::sync::Mutex as AsyncMutex;
 use tonic::{Code, Status};
 use tracing::trace;
 use tracing_test::traced_test;
@@ -15,8 +15,7 @@ use crate::errors::{YdbError, YdbOrCustomerError, YdbResult};
 use crate::query::Query;
 use crate::table_service_types::CopyTableItem;
 use crate::test_integration_helper::create_client;
-use crate::transaction::Mode;
-use crate::transaction::Transaction;
+use crate::transaction::{Mode, Transaction};
 use crate::types::{Value, ValueList, ValueStruct};
 use crate::{ydb_params, Bytes, TableClient};
 
@@ -117,7 +116,7 @@ async fn execute_data_query_params() -> YdbResult<()> {
 #[tokio::test]
 #[traced_test]
 #[ignore]
-async fn query_yson() -> YdbResult<()>{
+async fn query_yson() -> YdbResult<()> {
     let client = create_client().await?;
 
     let res = client
@@ -661,13 +660,18 @@ async fn select_with_u8_param() -> YdbResult<()> {
     let mut transaction = client
         .table_client()
         .create_autocommit_transaction(Mode::OnlineReadonly);
-    let res = transaction.query(
-        Query::from(r#"
+    let res = transaction
+        .query(
+            Query::from(
+                r#"
             DECLARE $val AS Uint8;
             SELECT $val as s
-        "#).with_params(ydb_params!(
-            "$val" => 99u8
-        )))
+        "#,
+            )
+            .with_params(ydb_params!(
+                "$val" => 99u8
+            )),
+        )
         .await?;
     trace!("result: {:?}", &res);
     assert_eq!(
@@ -691,13 +695,18 @@ async fn select_with_u16_param() -> YdbResult<()> {
     let mut transaction = client
         .table_client()
         .create_autocommit_transaction(Mode::OnlineReadonly);
-    let res = transaction.query(
-        Query::from(r#"
+    let res = transaction
+        .query(
+            Query::from(
+                r#"
             DECLARE $val AS Uint16;
             SELECT $val as s
-        "#).with_params(ydb_params!(
-            "$val" => 34111u16
-        )))
+        "#,
+            )
+            .with_params(ydb_params!(
+                "$val" => 34111u16
+            )),
+        )
         .await?;
     trace!("result: {:?}", &res);
     assert_eq!(

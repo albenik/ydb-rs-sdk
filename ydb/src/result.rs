@@ -1,3 +1,12 @@
+use std::collections::HashMap;
+use std::sync::Arc;
+use std::vec::IntoIter;
+
+use itertools::Itertools;
+use tracing::trace;
+use ydb_grpc::ydb_proto::status_ids::StatusCode;
+use ydb_grpc::ydb_proto::table::ExecuteScanQueryPartialResponse;
+
 use crate::errors;
 use crate::errors::{YdbError, YdbResult, YdbStatusError};
 use crate::grpc::proto_issues_to_ydb_issues;
@@ -5,13 +14,6 @@ use crate::grpc_wrapper::raw_table_service::execute_data_query::RawExecuteDataQu
 use crate::grpc_wrapper::raw_table_service::value::{RawResultSet, RawTypedValue, RawValue};
 use crate::trace_helpers::ensure_len_string;
 use crate::types::Value;
-use itertools::Itertools;
-use std::collections::HashMap;
-use std::sync::Arc;
-use std::vec::IntoIter;
-use tracing::trace;
-use ydb_grpc::ydb_proto::status_ids::StatusCode;
-use ydb_grpc::ydb_proto::table::ExecuteScanQueryPartialResponse;
 
 #[derive(Debug)]
 pub struct QueryResult {

@@ -1,15 +1,13 @@
 use std::time::Duration;
 
-use ydb_grpc::ydb_proto::{
-    coordination::{session_request, session_response::AcquireSemaphoreResult},
-    status_ids::StatusCode,
-};
+use ydb_grpc::ydb_proto::coordination::session_request;
+use ydb_grpc::ydb_proto::coordination::session_response::AcquireSemaphoreResult;
+use ydb_grpc::ydb_proto::status_ids::StatusCode;
 
-use crate::{
-    client_coordination::session::controller::IdentifiedMessage,
-    grpc_wrapper::{grpc::proto_issues_to_ydb_issues, raw_errors::RawError},
-    YdbStatusError,
-};
+use crate::client_coordination::session::controller::IdentifiedMessage;
+use crate::grpc_wrapper::grpc::proto_issues_to_ydb_issues;
+use crate::grpc_wrapper::raw_errors::RawError;
+use crate::YdbStatusError;
 
 #[derive(Debug)]
 pub(crate) struct RawAcquireSemaphoreRequest {

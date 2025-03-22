@@ -1,9 +1,11 @@
-use crate::client_topic::list_types::Codec;
-use crate::errors;
-use derive_builder::Builder;
-use prost::bytes::Bytes;
 use std::collections::HashMap;
 use std::time::Duration;
+
+use derive_builder::Builder;
+use prost::bytes::Bytes;
+
+use crate::client_topic::list_types::Codec;
+use crate::errors;
 
 type EncoderFunc = fn(Bytes) -> Bytes;
 

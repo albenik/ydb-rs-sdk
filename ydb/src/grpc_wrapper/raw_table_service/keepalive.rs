@@ -1,7 +1,8 @@
+use ydb_grpc::ydb_proto::operations::OperationParams;
+
 use crate::grpc_wrapper::raw_errors::RawError;
 use crate::grpc_wrapper::raw_table_service::client::SessionStatus;
 use crate::grpc_wrapper::raw_ydb_operation::RawOperationParams;
-use ydb_grpc::ydb_proto::operations::OperationParams;
 
 pub(crate) struct RawKeepAliveRequest {
     pub operation_params: RawOperationParams,

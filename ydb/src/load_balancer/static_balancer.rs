@@ -2,9 +2,10 @@ use std::sync::Arc;
 
 use http::Uri;
 
-use crate::{grpc_wrapper::raw_services::Service, waiter::WaiterImpl, DiscoveryState, Waiter, YdbError, YdbResult};
-
 use super::LoadBalancer;
+use crate::grpc_wrapper::raw_services::Service;
+use crate::waiter::WaiterImpl;
+use crate::{DiscoveryState, Waiter, YdbError, YdbResult};
 
 pub(crate) struct StaticLoadBalancer {
     endpoint: Uri,

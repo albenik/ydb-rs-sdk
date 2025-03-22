@@ -5,5 +5,4 @@
 pub mod generated;
 mod manual_workarounds;
 
-pub use generated::google as google_proto_workaround;
-pub use generated::ydb as ydb_proto;
+pub use generated::{google as google_proto_workaround, ydb as ydb_proto};

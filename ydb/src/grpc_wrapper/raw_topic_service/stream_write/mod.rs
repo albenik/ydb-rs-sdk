@@ -1,13 +1,10 @@
+use ydb_grpc::ydb_proto::status_ids::StatusCode;
 use ydb_grpc::ydb_proto::topic::stream_write_message::from_server::ServerMessage;
-use ydb_grpc::ydb_proto::topic::stream_write_message::FromServer;
+use ydb_grpc::ydb_proto::topic::stream_write_message::{FromServer, WriteResponse};
 use ydb_grpc::ydb_proto::topic::UpdateTokenResponse;
-use ydb_grpc::ydb_proto::{status_ids::StatusCode, topic::stream_write_message::WriteResponse};
 
-use crate::grpc_wrapper::{
-    grpc::proto_issues_to_ydb_issues,
-    raw_errors::{RawError, RawResult},
-};
-
+use crate::grpc_wrapper::grpc::proto_issues_to_ydb_issues;
+use crate::grpc_wrapper::raw_errors::{RawError, RawResult};
 use crate::grpc_wrapper::raw_topic_service::stream_write::init::RawInitResponse;
 
 pub(crate) mod init;

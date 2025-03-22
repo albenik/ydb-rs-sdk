@@ -1,16 +1,14 @@
 use std::sync::Arc;
-use tracing::trace;
 
 use tokio_util::sync::CancellationToken;
-
-use crate::{
-    grpc_wrapper::raw_coordination_service::session::release_semaphore::{
-        RawReleaseSemaphoreRequest, RawReleaseSemaphoreResult,
-    },
-    YdbResult,
-};
+use tracing::trace;
 
 use super::controller::RequestController;
+use crate::grpc_wrapper::raw_coordination_service::session::release_semaphore::{
+    RawReleaseSemaphoreRequest,
+    RawReleaseSemaphoreResult,
+};
+use crate::YdbResult;
 
 #[allow(dead_code)]
 pub struct Lease {

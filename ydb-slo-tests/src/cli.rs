@@ -1,5 +1,6 @@
-use crate::args;
 use clap::{Parser, Subcommand};
+
+use crate::args;
 
 #[derive(Clone, Parser)]
 pub struct SloTestsCli {

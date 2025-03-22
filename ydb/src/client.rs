@@ -1,19 +1,19 @@
+use std::sync::Arc;
+use std::time::Duration;
+
+use tracing::trace;
+
 use crate::client_common::DBCredentials;
 use crate::client_coordination::client::CoordinationClient;
 use crate::client_scheme::client::SchemeClient;
 use crate::client_table::TableClient;
+use crate::client_topic::client::TopicClient;
 use crate::discovery::Discovery;
 use crate::errors::YdbResult;
-use crate::load_balancer::SharedLoadBalancer;
-use crate::waiter::Waiter;
-
-use std::sync::Arc;
-use std::time::Duration;
-
-use crate::client_topic::client::TopicClient;
 use crate::grpc_connection_manager::GrpcConnectionManager;
 use crate::grpc_wrapper::raw_ydb_operation::RawOperationParams;
-use tracing::trace;
+use crate::load_balancer::SharedLoadBalancer;
+use crate::waiter::Waiter;
 
 /// YDB client
 pub struct Client {

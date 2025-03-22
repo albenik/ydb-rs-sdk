@@ -1,3 +1,17 @@
+use std::env;
+use std::fmt::Debug;
+use std::ops::Add;
+use std::process::Command;
+use std::sync::{Arc, Mutex};
+use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
+
+use chrono::DateTime;
+use http::Uri;
+use jsonwebtoken::{encode, Algorithm, EncodingKey, Header};
+use secrecy::{ExposeSecret, SecretString};
+use serde::{Deserialize, Serialize};
+use tracing::{debug, trace};
+
 use crate::client::TimeoutSettings;
 use crate::errors::{YdbError, YdbResult};
 use crate::grpc_connection_manager::GrpcConnectionManager;
@@ -6,19 +20,6 @@ use crate::grpc_wrapper::raw_auth_service::login::RawLoginRequest;
 use crate::grpc_wrapper::runtime_interceptors::MultiInterceptor;
 use crate::load_balancer::{SharedLoadBalancer, StaticLoadBalancer};
 use crate::pub_traits::{Credentials, TokenInfo};
-use chrono::DateTime;
-use http::Uri;
-
-use jsonwebtoken::{encode, Algorithm, EncodingKey, Header};
-use secrecy::{ExposeSecret, SecretString};
-use serde::{Deserialize, Serialize};
-use std::env;
-use std::fmt::Debug;
-use std::ops::Add;
-use std::process::Command;
-use std::sync::{Arc, Mutex};
-use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
-use tracing::{debug, trace};
 
 const YDB_ANONYMOUS_CREDENTIALS: &str = "YDB_ANONYMOUS_CREDENTIALS";
 const YDB_SERVICE_ACCOUNT_KEY_FILE_CREDENTIALS: &str = "YDB_SERVICE_ACCOUNT_KEY_FILE_CREDENTIALS";
@@ -65,8 +66,6 @@ impl MetadataUrlCredentials {
             inner: GCEMetadata::from_url(YC_METADATA_URL).unwrap(),
         }
     }
-
-
 
     /// Create GCEMetadata with custom url (may need for debug or spec infrastructure with non standard metadata)
     ///
@@ -573,9 +572,7 @@ impl StaticCredentials {
         Ok(raw_response.token)
     }
 
-    pub fn new(username: String,
-        password: String,
-        endpoint: Uri, database: String) -> Self {
+    pub fn new(username: String, password: String, endpoint: Uri, database: String) -> Self {
         Self {
             username,
             password: SecretString::new(password),
@@ -585,9 +582,13 @@ impl StaticCredentials {
         }
     }
 
-    pub fn new_with_ca(username: String,
+    pub fn new_with_ca(
+        username: String,
         password: String,
-        endpoint: Uri, database: String, cert_path: String) -> Self {
+        endpoint: Uri,
+        database: String,
+        cert_path: String,
+    ) -> Self {
         Self {
             username,
             password: SecretString::new(password),

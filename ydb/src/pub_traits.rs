@@ -1,8 +1,10 @@
-use crate::errors::YdbResult;
-use secrecy::SecretString;
 use std::fmt::{Debug, Formatter};
 use std::ops::Add;
 use std::time::{Duration, Instant};
+
+use secrecy::SecretString;
+
+use crate::errors::YdbResult;
 
 pub(crate) const DEFAULT_TOKEN_RENEW_INTERVAL: Duration = Duration::from_secs(3600); // 1 hour
 

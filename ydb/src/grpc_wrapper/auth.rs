@@ -1,10 +1,15 @@
+use http::HeaderValue;
+use secrecy::ExposeSecret;
+
 use crate::client_common::{DBCredentials, TokenCache};
 use crate::grpc_wrapper::raw_errors::{RawError, RawResult};
 use crate::grpc_wrapper::runtime_interceptors::{
-    GrpcInterceptor, InterceptorError, InterceptorRequest, InterceptorResult, RequestMetadata,
+    GrpcInterceptor,
+    InterceptorError,
+    InterceptorRequest,
+    InterceptorResult,
+    RequestMetadata,
 };
-use http::HeaderValue;
-use secrecy::ExposeSecret;
 
 pub(crate) struct AuthGrpcInterceptor {
     db_name: HeaderValue,
@@ -38,7 +43,11 @@ impl GrpcInterceptor for AuthGrpcInterceptor {
         let token_secret = self.token_cache.token();
         let token_string = token_secret.expose_secret();
         let token = HeaderValue::from_str(token_string.as_str()).map_err(|err| {
-            InterceptorError::custom(format!("received bad token (len={}): {}", token_string.len(), err))
+            InterceptorError::custom(format!(
+                "received bad token (len={}): {}",
+                token_string.len(),
+                err
+            ))
         })?;
 
         req.headers_mut()

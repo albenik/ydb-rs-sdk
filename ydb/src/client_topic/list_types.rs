@@ -1,10 +1,12 @@
-use crate::grpc_wrapper::raw_topic_service::common::codecs::{RawCodec, RawSupportedCodecs};
-use crate::grpc_wrapper::raw_topic_service::common::consumer::RawConsumer;
-use crate::grpc_wrapper::raw_topic_service::common::metering_mode::RawMeteringMode;
-use derive_builder::Builder;
 use std::collections::HashMap;
 use std::option::Option;
 use std::time::SystemTime;
+
+use derive_builder::Builder;
+
+use crate::grpc_wrapper::raw_topic_service::common::codecs::{RawCodec, RawSupportedCodecs};
+use crate::grpc_wrapper::raw_topic_service::common::consumer::RawConsumer;
+use crate::grpc_wrapper::raw_topic_service::common::metering_mode::RawMeteringMode;
 
 #[derive(Clone, Default, PartialEq, Eq)]
 pub struct Codec {

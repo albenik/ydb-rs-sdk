@@ -1,3 +1,4 @@
+use super::list_types::{NodeConfig, NodeDescription};
 use crate::client::TimeoutSettings;
 use crate::grpc_connection_manager::GrpcConnectionManager;
 use crate::grpc_wrapper::raw_coordination_service::alter_node::RawAlterNodeRequest;
@@ -6,8 +7,6 @@ use crate::grpc_wrapper::raw_coordination_service::create_node::RawCreateNodeReq
 use crate::grpc_wrapper::raw_coordination_service::describe_node::RawDescribeNodeRequest;
 use crate::grpc_wrapper::raw_coordination_service::drop_node::RawDropNodeRequest;
 use crate::{grpc_wrapper, CoordinationSession, SessionOptions, YdbResult};
-
-use super::list_types::{NodeConfig, NodeDescription};
 
 pub struct CoordinationClient {
     timeouts: TimeoutSettings,

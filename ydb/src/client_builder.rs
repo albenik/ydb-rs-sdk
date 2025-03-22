@@ -1,6 +1,18 @@
+use std::collections::HashMap;
+use std::str::FromStr;
+use std::sync::{Arc, Mutex};
+use std::time::Duration;
+
+use http::Uri;
+use once_cell::sync::Lazy;
+
 use crate::client_common::{DBCredentials, TokenCache};
 use crate::credentials::{
-    credencials_ref, AccessTokenCredentials, CredentialsRef, GCEMetadata, StaticCredentials,
+    credencials_ref,
+    AccessTokenCredentials,
+    CredentialsRef,
+    GCEMetadata,
+    StaticCredentials,
 };
 use crate::dicovery_pessimization_interceptor::DiscoveryPessimizationInterceptor;
 use crate::discovery::{Discovery, TimerDiscovery};
@@ -10,12 +22,6 @@ use crate::grpc_wrapper::auth::AuthGrpcInterceptor;
 use crate::grpc_wrapper::runtime_interceptors::MultiInterceptor;
 use crate::load_balancer::{SharedLoadBalancer, StaticLoadBalancer};
 use crate::{Client, Credentials};
-use http::Uri;
-use once_cell::sync::Lazy;
-use std::collections::HashMap;
-use std::str::FromStr;
-use std::sync::{Arc, Mutex};
-use std::time::Duration;
 
 type ParamHandler = fn(&str, ClientBuilder) -> YdbResult<ClientBuilder>;
 
@@ -158,7 +164,7 @@ fn token_static_password(uri: &str, mut client_builder: ClientBuilder) -> YdbRes
             password,
             endpoint,
             client_builder.database.clone(),
-        )
+        ),
     };
     client_builder.credentials = credencials_ref(creds);
 
@@ -238,8 +244,12 @@ impl ClientBuilder {
             interceptor.with_interceptor(DiscoveryPessimizationInterceptor::new(discovery.clone()));
 
         let load_balancer = SharedLoadBalancer::new(discovery.as_ref().as_ref());
-        let connection_manager =
-            GrpcConnectionManager::new(load_balancer, db_cred.database.clone(), interceptor, self.cert_path);
+        let connection_manager = GrpcConnectionManager::new(
+            load_balancer,
+            db_cred.database.clone(),
+            interceptor,
+            self.cert_path,
+        );
 
         Client::new(db_cred, discovery, connection_manager)
     }

@@ -1,7 +1,7 @@
+use std::collections::VecDeque;
+
 use crate::client_topic::topicwriter::message_write_status::MessageWriteStatus;
 use crate::grpc_wrapper::raw_errors::{RawError, RawResult};
-
-use std::collections::VecDeque;
 
 pub(crate) enum TopicWriterReceptionType {
     AwaitingConfirmation(tokio::sync::oneshot::Sender<MessageWriteStatus>),

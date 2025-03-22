@@ -1,10 +1,11 @@
-use crate::errors::YdbResult;
-use crate::types::Value;
 use std::collections::HashMap;
 use std::str::FromStr;
 
-use crate::YdbError;
 use ydb_grpc::ydb_proto::TypedValue;
+
+use crate::errors::YdbResult;
+use crate::types::Value;
+use crate::YdbError;
 
 /// Query object
 #[derive(Clone)]
@@ -77,7 +78,7 @@ impl Query {
     /// .with_params(ydb_params!("$val" => 123 as i64))
     /// .with_keep_in_cache(false);
     /// ```
-    pub fn with_keep_in_cache(mut self, val: bool)->Self {
+    pub fn with_keep_in_cache(mut self, val: bool) -> Self {
         self.force_keep_in_cache = true;
         self.keep_in_cache = val;
         self

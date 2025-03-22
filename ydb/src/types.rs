@@ -1,14 +1,15 @@
-use crate::errors::{YdbError, YdbResult};
 use std::collections::HashMap;
-
-use crate::grpc_wrapper::raw_table_service::value::r#type::RawType;
-use crate::grpc_wrapper::raw_table_service::value::RawColumn;
 use std::convert::TryInto;
 use std::fmt::Debug;
 use std::num::TryFromIntError;
 use std::time::{Duration, SystemTime};
+
 use strum::{EnumCount, EnumDiscriminants, EnumIter, IntoStaticStr};
 use ydb_grpc::ydb_proto;
+
+use crate::errors::{YdbError, YdbResult};
+use crate::grpc_wrapper::raw_table_service::value::r#type::RawType;
+use crate::grpc_wrapper::raw_table_service::value::RawColumn;
 
 pub(crate) const SECONDS_PER_DAY: u64 = 60 * 60 * 24;
 
@@ -423,7 +424,6 @@ impl Value {
         })
     }
 
-
     fn to_typed_optional(optional: ValueOptional) -> YdbResult<ydb_proto::TypedValue> {
         if let Value::Optional(_opt) = optional.t {
             unimplemented!("nested optional")
@@ -507,7 +507,8 @@ impl Value {
 
     #[cfg(test)]
     pub(crate) fn examples_for_test() -> Vec<Value> {
-        use std::{collections::HashSet, ops::Add};
+        use std::collections::HashSet;
+        use std::ops::Add;
 
         // test zero, one, minimum and maximum values
         macro_rules! num_tests {
@@ -529,7 +530,11 @@ impl Value {
             Value::Json("{}".into()),
             Value::JsonDocument("{}".into()),
             Value::Yson("1;2;3;".into()),
-            Value::Decimal("123456789.987654321".parse::<decimal_rs::Decimal>().unwrap()),
+            Value::Decimal(
+                "123456789.987654321"
+                    .parse::<decimal_rs::Decimal>()
+                    .unwrap(),
+            ),
         ];
 
         num_tests!(values, Value::Int8, i8);
@@ -642,7 +647,7 @@ impl From<String> for Bytes {
 }
 
 impl From<&str> for Bytes {
-    fn from(val: &str)->Self{
-        Self{vec: val.into()}
+    fn from(val: &str) -> Self {
+        Self { vec: val.into() }
     }
 }

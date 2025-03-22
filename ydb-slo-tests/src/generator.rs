@@ -1,10 +1,13 @@
-use crate::row::{RowID, TestRow};
-use base64::{engine::general_purpose::STANDARD, Engine as _};
+use std::sync::{Arc, Mutex};
+use std::time::SystemTime;
+
+use base64::engine::general_purpose::STANDARD;
+use base64::Engine as _;
 use rand::prelude::StdRng;
 use rand::Rng;
 use rand_core::{OsRng, RngCore, SeedableRng};
-use std::sync::{Arc, Mutex};
-use std::time::SystemTime;
+
+use crate::row::{RowID, TestRow};
 
 const MIN_LENGTH: usize = 20;
 const MAX_LENGTH: usize = 40;

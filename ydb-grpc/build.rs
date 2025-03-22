@@ -2,6 +2,7 @@ use std::fs::OpenOptions;
 use std::io::{Read, Seek, Write};
 use std::path::PathBuf;
 use std::{fs, io};
+
 use walkdir::WalkDir;
 
 const DST_FOLDER: &str = "src/generated";

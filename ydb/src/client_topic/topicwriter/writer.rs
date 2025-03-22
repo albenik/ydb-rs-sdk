@@ -1,30 +1,14 @@
-use crate::client_topic::topicwriter::message::TopicWriterMessage;
-use crate::client_topic::topicwriter::message_write_status::{MessageWriteStatus, WriteAck};
-use crate::client_topic::topicwriter::writer_options::TopicWriterOptions;
-use crate::client_topic::topicwriter::writer_reception_queue::{
-    TopicWriterReceptionQueue, TopicWriterReceptionTicket, TopicWriterReceptionType,
-};
-use crate::grpc_connection_manager::GrpcConnectionManager;
-
-use crate::grpc_wrapper::grpc_stream_wrapper::AsyncGrpcStreamWrapper;
-use crate::grpc_wrapper::raw_topic_service::common::codecs::RawSupportedCodecs;
-use crate::grpc_wrapper::raw_topic_service::stream_write::init::RawInitResponse;
-use crate::grpc_wrapper::raw_topic_service::stream_write::RawServerMessage;
-use crate::{grpc_wrapper, YdbError, YdbResult};
 use std::borrow::{Borrow, BorrowMut};
-
 use std::future::Future;
 use std::ops::Deref;
 use std::pin::Pin;
 use std::sync::{Arc, Mutex};
 use std::task::{Context, Poll};
-use std::time::Instant;
-use std::time::{Duration, UNIX_EPOCH};
+use std::time::{Duration, Instant, UNIX_EPOCH};
 
 use tokio::sync::mpsc;
 use tokio::sync::mpsc::Receiver;
 use tokio::task::JoinHandle;
-
 use tokio::time::timeout;
 use tokio_util::sync::CancellationToken;
 use tracing::log::trace;
@@ -34,6 +18,21 @@ use ydb_grpc::ydb_proto::topic::stream_write_message::from_client::ClientMessage
 use ydb_grpc::ydb_proto::topic::stream_write_message::init_request::Partitioning;
 use ydb_grpc::ydb_proto::topic::stream_write_message::write_request::{message_data, MessageData};
 use ydb_grpc::ydb_proto::topic::stream_write_message::{InitRequest, WriteRequest};
+
+use crate::client_topic::topicwriter::message::TopicWriterMessage;
+use crate::client_topic::topicwriter::message_write_status::{MessageWriteStatus, WriteAck};
+use crate::client_topic::topicwriter::writer_options::TopicWriterOptions;
+use crate::client_topic::topicwriter::writer_reception_queue::{
+    TopicWriterReceptionQueue,
+    TopicWriterReceptionTicket,
+    TopicWriterReceptionType,
+};
+use crate::grpc_connection_manager::GrpcConnectionManager;
+use crate::grpc_wrapper::grpc_stream_wrapper::AsyncGrpcStreamWrapper;
+use crate::grpc_wrapper::raw_topic_service::common::codecs::RawSupportedCodecs;
+use crate::grpc_wrapper::raw_topic_service::stream_write::init::RawInitResponse;
+use crate::grpc_wrapper::raw_topic_service::stream_write::RawServerMessage;
+use crate::{grpc_wrapper, YdbError, YdbResult};
 
 pub(crate) enum TopicWriterMode {
     Working,

@@ -1,15 +1,11 @@
-
-
-
-
-
-use itertools::enumerate;
 use std::any::Any;
 use std::fmt::{Debug, Display, Formatter};
 use std::future::Future;
 use std::pin::Pin;
 use std::sync::Arc;
 use std::task::{Context, Poll};
+
+use itertools::enumerate;
 use tonic::transport::Channel;
 
 pub(crate) type InterceptorResult<T> = std::result::Result<T, InterceptorError>;

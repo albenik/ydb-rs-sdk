@@ -1,7 +1,7 @@
-use crate::grpc_wrapper::raw_errors::{RawError, RawResult};
-
 use futures_util::StreamExt;
 use tokio::sync::mpsc;
+
+use crate::grpc_wrapper::raw_errors::{RawError, RawResult};
 
 pub(crate) struct AsyncGrpcStreamWrapper<RequestT, ResponseT> {
     from_client_grpc: mpsc::UnboundedSender<RequestT>,

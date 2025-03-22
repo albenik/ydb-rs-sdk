@@ -1,12 +1,9 @@
 use ydb_grpc::ydb_proto::coordination::{DescribeNodeRequest, DescribeNodeResult};
 
-use crate::grpc_wrapper::{
-    raw_errors::{RawError, RawResult},
-    raw_scheme_client::list_directory_types::from_grpc_to_scheme_entry,
-    raw_ydb_operation::RawOperationParams,
-};
-
 use super::config::RawCoordinationNodeConfig;
+use crate::grpc_wrapper::raw_errors::{RawError, RawResult};
+use crate::grpc_wrapper::raw_scheme_client::list_directory_types::from_grpc_to_scheme_entry;
+use crate::grpc_wrapper::raw_ydb_operation::RawOperationParams;
 
 #[derive(Debug)]
 pub(crate) struct RawDescribeNodeRequest {

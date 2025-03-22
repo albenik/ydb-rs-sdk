@@ -1,15 +1,21 @@
-use crate::grpc_wrapper::runtime_interceptors::{
-    ChannelResponse, GrpcInterceptor, InterceptorError, InterceptorRequest, InterceptorResult,
-    RequestMetadata,
-};
-use crate::Discovery;
+use std::sync::Arc;
+
 use http::uri::PathAndQuery;
 use http::Uri;
-use std::sync::Arc;
 use tokio::sync::mpsc;
 use tokio::sync::mpsc::error::SendError;
 use tokio::sync::mpsc::{UnboundedReceiver, UnboundedSender};
 use tracing::trace;
+
+use crate::grpc_wrapper::runtime_interceptors::{
+    ChannelResponse,
+    GrpcInterceptor,
+    InterceptorError,
+    InterceptorRequest,
+    InterceptorResult,
+    RequestMetadata,
+};
+use crate::Discovery;
 
 pub(crate) struct ChannelErrorInfo {
     pub(crate) endpoint: Uri,

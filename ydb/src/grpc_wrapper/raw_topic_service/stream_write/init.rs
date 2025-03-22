@@ -1,11 +1,8 @@
 use ydb_grpc::ydb_proto::topic::stream_write_message::InitResponse;
 
-use crate::grpc_wrapper::{
-    raw_errors::{RawError, RawResult},
-    raw_topic_service::common::codecs::RawSupportedCodecs,
-};
-
 use super::RawServerMessage;
+use crate::grpc_wrapper::raw_errors::{RawError, RawResult};
+use crate::grpc_wrapper::raw_topic_service::common::codecs::RawSupportedCodecs;
 
 #[derive(serde::Serialize)]
 pub(crate) struct RawInitResponse {
