@@ -12,6 +12,7 @@ use crate::YdbError::InternalError;
 use crate::{grpc_wrapper, YdbResult};
 use derive_builder::{Builder, UninitializedFieldError};
 use std::collections::HashMap;
+use ydb_grpc::ydb_proto::topic::AutoPartitioningSettings;
 
 #[derive(Builder)]
 #[builder(build_fn(error = "errors::YdbError"))]
@@ -22,7 +23,9 @@ pub struct TopicOptions {
     #[builder(default)]
     pub min_active_partitions: i64,
     #[builder(default)]
-    pub partition_count_limit: i64,
+    pub max_active_partitions: i64,
+    #[builder(default)]
+    pub auto_partitioning_settings: Option<AutoPartitioningSettings>,
     #[builder(setter(strip_option), default)]
     pub retention_period: Option<core::time::Duration>,
     #[builder(default)]
@@ -97,8 +100,7 @@ impl TopicClient {
         TopicWriter::new(
             TopicWriterOptionsBuilder::default()
                 .topic_path(path)
-                .build()
-                .unwrap(),
+                .build()?,
             self.connection_manager.clone(),
         )
         .await
