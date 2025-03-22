@@ -143,7 +143,7 @@ impl NearestDCBalancer {
                     .preferred_endpoints
                     .choose(&mut thread_rng())
                 {
-                    return YdbResult::Ok(node.uri.clone());
+                    return Ok(node.uri.clone());
                 }
             }
             Err(err) => {
@@ -347,14 +347,14 @@ impl NearestDCBalancer {
                 biased; // check timeout first
                 _ = interrupt_collector_future.cancelled() =>{
                     Self::join_all(&mut nursery).await; // Children will be cancelled due to tokens chaining
-                    YdbResult::Err("cancelled".into())
+                    Err("cancelled".into())
                 }
                 address_option = addr_reciever.recv() =>{
                     match address_option {
                         Some(address) => {
                             interrupt_collector_future.cancel(); // Cancel other producing children
                             Self::join_all(&mut nursery).await;
-                            YdbResult::Ok(address)
+                            Ok(address)
                         },
                         None => Err(YdbError::Custom("no fastest address".into())), // Channel closed, all producers have done measures
                     }
@@ -368,7 +368,7 @@ impl NearestDCBalancer {
             Ok(address_option) => address_option,
             Err(_) => {
                 interrupt_via_timeout.cancel();
-                YdbResult::Err("timeout while detecting fastest address".into())
+                Err("timeout while detecting fastest address".into())
             }
         }
     }

@@ -1,7 +1,7 @@
 use std::sync::Arc;
 
 use rand::RngCore;
-use tokio::sync::mpsc::{self, UnboundedSender};
+use tokio::sync::mpsc;
 use tokio::task::JoinHandle;
 use tokio_util::sync::CancellationToken;
 use tracing::trace;
@@ -197,8 +197,7 @@ impl CoordinationSession {
         let options = DescribeOptionsBuilder::default()
             .with_owners(true)
             .with_waiters(true)
-            .build()
-            .unwrap();
+            .build()?;
 
         self.describe_semaphore_with_params(name, options).await
     }
@@ -301,7 +300,7 @@ impl CoordinationSession {
 
     async fn receive_messages_loop_iteration(
         server_messages_receiver: &mut AsyncGrpcStreamWrapper<SessionRequest, SessionResponse>,
-        raw_sender: &UnboundedSender<SessionRequest>,
+        raw_sender: &mpsc::UnboundedSender<SessionRequest>,
         method_controllers: &MethodControllers,
     ) -> YdbResult<()> {
         let response = server_messages_receiver

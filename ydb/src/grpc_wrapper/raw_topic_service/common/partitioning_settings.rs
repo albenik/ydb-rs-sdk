@@ -7,6 +7,7 @@ pub(crate) struct RawPartitioningSettings {
     pub auto_partitioning_settings: Option<AutoPartitioningSettings>,
 }
 
+#[allow(deprecated)]
 impl From<RawPartitioningSettings> for ydb_grpc::ydb_proto::topic::PartitioningSettings {
     fn from(value: RawPartitioningSettings) -> Self {
         Self {
