@@ -7,8 +7,7 @@ use crate::client::TimeoutSettings;
 use crate::client_topic::list_types::{Consumer, MeteringMode, SupportedCodecs};
 use crate::client_topic::topicwriter::writer::TopicWriter;
 use crate::client_topic::topicwriter::writer_options::{
-    TopicWriterOptions,
-    TopicWriterOptionsBuilder,
+    TopicWriterOptions, TopicWriterOptionsBuilder,
 };
 use crate::grpc_connection_manager::GrpcConnectionManager;
 use crate::grpc_wrapper::raw_topic_service::create_topic::RawCreateTopicRequest;

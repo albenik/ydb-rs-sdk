@@ -5,8 +5,7 @@ use ydb_grpc::ydb_proto::scheme::{MakeDirectoryRequest, RemoveDirectoryRequest};
 
 use crate::grpc_wrapper::raw_errors::RawResult;
 use crate::grpc_wrapper::raw_scheme_client::list_directory_types::{
-    RawListDirectoryRequest,
-    RawListDirectoryResult,
+    RawListDirectoryRequest, RawListDirectoryResult,
 };
 use crate::grpc_wrapper::raw_services::{GrpcServiceForDiscovery, Service};
 use crate::grpc_wrapper::raw_ydb_operation::RawOperationParams;

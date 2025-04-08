@@ -2,11 +2,7 @@ use std::time::Duration;
 
 use tokio::task::JoinHandle;
 use ydb::{
-    ClientBuilder,
-    CoordinationSession,
-    NodeConfigBuilder,
-    SessionOptionsBuilder,
-    YdbResult,
+    ClientBuilder, CoordinationSession, NodeConfigBuilder, SessionOptionsBuilder, YdbResult,
 };
 
 async fn mutex_work(session: CoordinationSession) {

@@ -23,9 +23,7 @@ use crate::client_topic::topicwriter::message::TopicWriterMessage;
 use crate::client_topic::topicwriter::message_write_status::{MessageWriteStatus, WriteAck};
 use crate::client_topic::topicwriter::writer_options::TopicWriterOptions;
 use crate::client_topic::topicwriter::writer_reception_queue::{
-    TopicWriterReceptionQueue,
-    TopicWriterReceptionTicket,
-    TopicWriterReceptionType,
+    TopicWriterReceptionQueue, TopicWriterReceptionTicket, TopicWriterReceptionType,
 };
 use crate::grpc_connection_manager::GrpcConnectionManager;
 use crate::grpc_wrapper::grpc_stream_wrapper::AsyncGrpcStreamWrapper;

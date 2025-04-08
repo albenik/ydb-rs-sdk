@@ -2,27 +2,16 @@ use std::fmt::Debug;
 
 use ydb_grpc::ydb_proto::auth::LoginResponse;
 use ydb_grpc::ydb_proto::coordination::{
-    AlterNodeResponse,
-    CreateNodeResponse,
-    DescribeNodeResponse,
-    DropNodeResponse,
+    AlterNodeResponse, CreateNodeResponse, DescribeNodeResponse, DropNodeResponse,
 };
 use ydb_grpc::ydb_proto::discovery::{ListEndpointsResponse, WhoAmIResponse};
 use ydb_grpc::ydb_proto::operations::Operation as YdbOperation;
 use ydb_grpc::ydb_proto::scheme::{
-    ListDirectoryResponse,
-    MakeDirectoryResponse,
-    RemoveDirectoryResponse,
+    ListDirectoryResponse, MakeDirectoryResponse, RemoveDirectoryResponse,
 };
 use ydb_grpc::ydb_proto::table::{
-    CommitTransactionResponse,
-    CopyTableResponse,
-    CopyTablesResponse,
-    CreateSessionResponse,
-    DeleteSessionResponse,
-    ExecuteDataQueryResponse,
-    ExecuteSchemeQueryResponse,
-    KeepAliveResponse,
+    CommitTransactionResponse, CopyTableResponse, CopyTablesResponse, CreateSessionResponse,
+    DeleteSessionResponse, ExecuteDataQueryResponse, ExecuteSchemeQueryResponse, KeepAliveResponse,
     RollbackTransactionResponse,
 };
 use ydb_grpc::ydb_proto::topic::{CreateTopicResponse, DropTopicResponse};

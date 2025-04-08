@@ -3,11 +3,7 @@ use std::collections::HashMap;
 use itertools::Itertools;
 use ydb_grpc::ydb_proto::operations::OperationParams;
 use ydb_grpc::ydb_proto::topic::{
-    Consumer,
-    CreateTopicRequest,
-    MeteringMode,
-    PartitioningSettings,
-    SupportedCodecs,
+    Consumer, CreateTopicRequest, MeteringMode, PartitioningSettings, SupportedCodecs,
 };
 
 use crate::client_topic::client::TopicOptions;

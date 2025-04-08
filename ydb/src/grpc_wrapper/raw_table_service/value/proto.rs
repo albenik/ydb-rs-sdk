@@ -5,11 +5,7 @@ use ydb_grpc::ydb_proto::Value as ProtoValue;
 use crate::grpc_wrapper::raw_errors::RawError;
 use crate::grpc_wrapper::raw_table_service::value::r#type::{decode_err, RawType};
 use crate::grpc_wrapper::raw_table_service::value::{
-    RawColumn,
-    RawResultSet,
-    RawTypedValue,
-    RawValue,
-    RawValuePair,
+    RawColumn, RawResultSet, RawTypedValue, RawValue, RawValuePair,
 };
 
 impl TryFrom<ProtoValue> for RawValue {

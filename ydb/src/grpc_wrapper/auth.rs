@@ -4,11 +4,7 @@ use secrecy::ExposeSecret;
 use crate::client_common::{DBCredentials, TokenCache};
 use crate::grpc_wrapper::raw_errors::{RawError, RawResult};
 use crate::grpc_wrapper::runtime_interceptors::{
-    GrpcInterceptor,
-    InterceptorError,
-    InterceptorRequest,
-    InterceptorResult,
-    RequestMetadata,
+    GrpcInterceptor, InterceptorError, InterceptorRequest, InterceptorResult, RequestMetadata,
 };
 
 pub(crate) struct AuthGrpcInterceptor {

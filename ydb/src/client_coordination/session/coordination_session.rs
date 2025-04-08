@@ -14,37 +14,26 @@ use super::lease::Lease;
 use crate::grpc_connection_manager::GrpcConnectionManager;
 use crate::grpc_wrapper::grpc_stream_wrapper::AsyncGrpcStreamWrapper;
 use crate::grpc_wrapper::raw_coordination_service::session::acquire_semaphore::{
-    RawAcquireSemaphoreRequest,
-    RawAcquireSemaphoreResult,
+    RawAcquireSemaphoreRequest, RawAcquireSemaphoreResult,
 };
 use crate::grpc_wrapper::raw_coordination_service::session::create_semaphore::{
-    RawCreateSemaphoreRequest,
-    RawCreateSemaphoreResult,
+    RawCreateSemaphoreRequest, RawCreateSemaphoreResult,
 };
 use crate::grpc_wrapper::raw_coordination_service::session::delete_semaphore::{
-    RawDeleteSemaphoreRequest,
-    RawDeleteSemaphoreResult,
+    RawDeleteSemaphoreRequest, RawDeleteSemaphoreResult,
 };
 use crate::grpc_wrapper::raw_coordination_service::session::describe_semaphore::{
-    RawDescribeSemaphoreRequest,
-    RawDescribeSemaphoreResult,
-    SemaphoreDescription,
+    RawDescribeSemaphoreRequest, RawDescribeSemaphoreResult, SemaphoreDescription,
 };
 use crate::grpc_wrapper::raw_coordination_service::session::release_semaphore::RawReleaseSemaphoreResult;
 use crate::grpc_wrapper::raw_coordination_service::session::update_semaphore::{
-    RawUpdateSemaphoreRequest,
-    RawUpdateSemaphoreResult,
+    RawUpdateSemaphoreRequest, RawUpdateSemaphoreResult,
 };
 use crate::grpc_wrapper::raw_coordination_service::session::RawSessionResponse;
 use crate::grpc_wrapper::{self};
 use crate::{
-    AcquireOptions,
-    AcquireOptionsBuilder,
-    DescribeOptions,
-    DescribeOptionsBuilder,
-    SessionOptions,
-    YdbError,
-    YdbResult,
+    AcquireOptions, AcquireOptionsBuilder, DescribeOptions, DescribeOptionsBuilder, SessionOptions,
+    YdbError, YdbResult,
 };
 
 #[derive(Clone)]

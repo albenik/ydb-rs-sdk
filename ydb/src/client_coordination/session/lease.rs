@@ -5,8 +5,7 @@ use tracing::trace;
 
 use super::controller::RequestController;
 use crate::grpc_wrapper::raw_coordination_service::session::release_semaphore::{
-    RawReleaseSemaphoreRequest,
-    RawReleaseSemaphoreResult,
+    RawReleaseSemaphoreRequest, RawReleaseSemaphoreResult,
 };
 use crate::YdbResult;
 

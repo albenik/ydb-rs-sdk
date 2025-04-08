@@ -5,20 +5,16 @@ use crate::client::TimeoutSettings;
 use crate::grpc_wrapper::raw_errors::RawResult;
 use crate::grpc_wrapper::raw_services::{GrpcServiceForDiscovery, Service};
 use crate::grpc_wrapper::raw_table_service::commit_transaction::{
-    RawCommitTransactionRequest,
-    RawCommitTransactionResult,
+    RawCommitTransactionRequest, RawCommitTransactionResult,
 };
 use crate::grpc_wrapper::raw_table_service::copy_table::{
-    RawCopyTableRequest,
-    RawCopyTablesRequest,
+    RawCopyTableRequest, RawCopyTablesRequest,
 };
 use crate::grpc_wrapper::raw_table_service::create_session::{
-    RawCreateSessionRequest,
-    RawCreateSessionResult,
+    RawCreateSessionRequest, RawCreateSessionResult,
 };
 use crate::grpc_wrapper::raw_table_service::execute_data_query::{
-    RawExecuteDataQueryRequest,
-    RawExecuteDataQueryResult,
+    RawExecuteDataQueryRequest, RawExecuteDataQueryResult,
 };
 use crate::grpc_wrapper::raw_table_service::execute_scheme_query::RawExecuteSchemeQueryRequest;
 use crate::grpc_wrapper::raw_table_service::keepalive::{RawKeepAliveRequest, RawKeepAliveResult};

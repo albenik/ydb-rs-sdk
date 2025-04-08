@@ -8,11 +8,7 @@ use once_cell::sync::Lazy;
 
 use crate::client_common::{DBCredentials, TokenCache};
 use crate::credentials::{
-    credencials_ref,
-    AccessTokenCredentials,
-    CredentialsRef,
-    GCEMetadata,
-    StaticCredentials,
+    credencials_ref, AccessTokenCredentials, CredentialsRef, GCEMetadata, StaticCredentials,
 };
 use crate::dicovery_pessimization_interceptor::DiscoveryPessimizationInterceptor;
 use crate::discovery::{Discovery, TimerDiscovery};

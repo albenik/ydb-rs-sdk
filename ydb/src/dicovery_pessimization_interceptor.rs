@@ -8,11 +8,7 @@ use tokio::sync::mpsc::{UnboundedReceiver, UnboundedSender};
 use tracing::trace;
 
 use crate::grpc_wrapper::runtime_interceptors::{
-    ChannelResponse,
-    GrpcInterceptor,
-    InterceptorError,
-    InterceptorRequest,
-    InterceptorResult,
+    ChannelResponse, GrpcInterceptor, InterceptorError, InterceptorRequest, InterceptorResult,
     RequestMetadata,
 };
 use crate::Discovery;

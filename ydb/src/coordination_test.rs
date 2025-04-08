@@ -4,9 +4,7 @@ use tokio::task::JoinHandle;
 use tracing_test::traced_test;
 
 use crate::client_coordination::list_types::{
-    ConsistencyMode,
-    NodeConfigBuilder,
-    RateLimiterCountersMode,
+    ConsistencyMode, NodeConfigBuilder, RateLimiterCountersMode,
 };
 use crate::test_integration_helper::create_client;
 use crate::{AcquireOptionsBuilder, CoordinationSession, SessionOptionsBuilder, YdbResult};

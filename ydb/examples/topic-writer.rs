@@ -1,9 +1,5 @@
 use ydb::{
-    ClientBuilder,
-    TopicWriter,
-    TopicWriterMessageBuilder,
-    TopicWriterOptionsBuilder,
-    YdbResult,
+    ClientBuilder, TopicWriter, TopicWriterMessageBuilder, TopicWriterOptionsBuilder, YdbResult,
 };
 
 #[tokio::main]

@@ -105,20 +105,12 @@ pub use client::Client;
 pub use client_builder::ClientBuilder;
 pub use client_coordination::client::CoordinationClient;
 pub use client_coordination::list_types::{
-    ConsistencyMode,
-    NodeConfig,
-    NodeConfigBuilder,
-    NodeDescription,
-    RateLimiterCountersMode,
+    ConsistencyMode, NodeConfig, NodeConfigBuilder, NodeDescription, RateLimiterCountersMode,
 };
 pub use client_coordination::session::acquire_options::{AcquireOptions, AcquireOptionsBuilder};
 pub use client_coordination::session::coordination_session::CoordinationSession;
 pub use client_coordination::session::describe_options::{
-    DescribeOptions,
-    DescribeOptionsBuilder,
-    WatchMode,
-    WatchOptions,
-    WatchOptionsBuilder,
+    DescribeOptions, DescribeOptionsBuilder, WatchMode, WatchOptions, WatchOptionsBuilder,
 };
 pub use client_coordination::session::lease::Lease;
 pub use client_coordination::session::session_options::{SessionOptions, SessionOptionsBuilder};
@@ -135,9 +127,7 @@ pub use client_topic::topicwriter::message::{TopicWriterMessage, TopicWriterMess
 pub use client_topic::topicwriter::writer::TopicWriter;
 // full enum pub types
 pub use client_topic::topicwriter::writer_options::{
-    TopicWriterConnectionOptions,
-    TopicWriterOptions,
-    TopicWriterOptionsBuilder,
+    TopicWriterConnectionOptions, TopicWriterOptions, TopicWriterOptionsBuilder,
     TopicWriterRetrySettings,
 };
 // full enum pub types
@@ -154,31 +144,17 @@ pub use waiter::Waiter;
 // deprecated types
 #[allow(deprecated)]
 pub use crate::credentials::{
-    CommandLineYcToken,
-    StaticCredentialsAuth,
-    StaticToken,
-    YandexMetadata,
+    CommandLineYcToken, StaticCredentialsAuth, StaticToken, YandexMetadata,
 };
 // full enum pub types
 pub use crate::{
     credentials::{
-        AccessTokenCredentials,
-        AnonymousCredentials,
-        CommandLineCredentials,
-        FromEnvCredentials,
-        GCEMetadata,
-        MetadataUrlCredentials,
-        ServiceAccountCredentials,
-        StaticCredentials,
+        AccessTokenCredentials, AnonymousCredentials, CommandLineCredentials, FromEnvCredentials,
+        GCEMetadata, MetadataUrlCredentials, ServiceAccountCredentials, StaticCredentials,
     },
     errors::{
-        YdbError,
-        YdbIssue,
-        YdbIssueSeverity,
-        YdbOrCustomerError,
-        YdbResult,
-        YdbResultWithCustomerErr,
-        YdbStatusError,
+        YdbError, YdbIssue, YdbIssueSeverity, YdbOrCustomerError, YdbResult,
+        YdbResultWithCustomerErr, YdbStatusError,
     },
     pub_traits::{Credentials, TokenInfo},
     types::{Bytes, Sign, SignedInterval, Value, ValueList, ValueOptional, ValueStruct},

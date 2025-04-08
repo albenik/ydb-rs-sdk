@@ -1,9 +1,5 @@
 use ydb_grpc::ydb_proto::coordination::session_response::{
-    AcquireSemaphorePending,
-    DescribeSemaphoreChanged,
-    PingPong,
-    SessionStarted,
-    SessionStopped,
+    AcquireSemaphorePending, DescribeSemaphoreChanged, PingPong, SessionStarted, SessionStopped,
 };
 use ydb_grpc::ydb_proto::coordination::{session_response, SessionResponse};
 

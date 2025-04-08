@@ -7,9 +7,7 @@ use tracing::trace;
 use crate::client::{Client, TimeoutSettings};
 use crate::errors::YdbResult;
 use crate::test_helpers::{
-    test_client_builder,
-    test_custom_ca_client_builder,
-    test_with_password_builder,
+    test_client_builder, test_custom_ca_client_builder, test_with_password_builder,
 };
 
 lazy_static! {

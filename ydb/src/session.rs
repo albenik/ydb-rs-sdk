@@ -12,14 +12,11 @@ use crate::errors::{YdbError, YdbResult};
 use crate::grpc_connection_manager::GrpcConnectionManager;
 use crate::grpc_wrapper::raw_errors::RawResult;
 use crate::grpc_wrapper::raw_table_service::client::{
-    CollectStatsMode,
-    RawTableClient,
-    SessionStatus,
+    CollectStatsMode, RawTableClient, SessionStatus,
 };
 use crate::grpc_wrapper::raw_table_service::commit_transaction::RawCommitTransactionRequest;
 use crate::grpc_wrapper::raw_table_service::copy_table::{
-    RawCopyTableRequest,
-    RawCopyTablesRequest,
+    RawCopyTableRequest, RawCopyTablesRequest,
 };
 use crate::grpc_wrapper::raw_table_service::execute_data_query::RawExecuteDataQueryRequest;
 use crate::grpc_wrapper::raw_table_service::execute_scheme_query::RawExecuteSchemeQueryRequest;
